@@ -8,6 +8,8 @@ install! 'cocoapods', :deterministic_uuids => false
 rn_maps_path = '../node_modules/react-native-maps'
 pod 'react-native-google-maps', :path => rn_maps_path
 
+pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 target 'ahenemaunited' do
   config = use_native_modules!
 
