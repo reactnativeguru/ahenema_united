@@ -229,6 +229,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+             storeFile file("release.jks")
+                storePassword "pass2022key"
+                keyAlias "appinion_key_alias"
+                keyPassword "pass2022key."
+            }
     }
     buildTypes {
         debug {
