@@ -1,22 +1,25 @@
-import { useSubscription } from '@apollo/client';
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import React, { FC, useContext, useState } from 'react';
+import {useSubscription} from '@apollo/client';
+import {NativeStackScreenProps} from '@react-navigation/native-stack';
+import React, {FC, useContext, useState} from 'react';
 import {
-  FlatList, Platform, StyleSheet, Text,
-  TouchableOpacity, View
+  FlatList,
+  Platform,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
-import { scale, verticalScale } from 'react-native-size-matters';
+import {scale, verticalScale} from 'react-native-size-matters';
 import {
   FeedChats,
-  FeedPeoples, HeaderBar, LoadingIndicator, MainAppContainer
+  FeedPeoples,
+  HeaderBar,
+  LoadingIndicator,
+  MainAppContainer,
 } from '../../components';
-import {
-  COLORS,
-  FONTS, globalStyles, routes, SIZES
-} from '../../constants';
-import { Context as ChatContext } from '../../context/chatContext';
-import { GET_USERS_PROFILE } from '../../graphql/subscriptions';
-
+import {COLORS, FONTS, globalStyles, routes, SIZES} from '../../constants';
+import {Context as ChatContext} from '../../context/chatContext';
+import {GET_USERS_PROFILE} from '../../graphql/subscriptions';
 
 type RootStackParamList = {
   FeedScreen: undefined;
@@ -27,8 +30,9 @@ type FeedScreenProps = NativeStackScreenProps<RootStackParamList, 'FeedScreen'>;
 const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
   const [type, setType] = useState('chat');
   const {data, loading, error} = useSubscription(GET_USERS_PROFILE, {
-    variables: {id: '9e832a38-2dca-47b0-8afa-6a18a57cd87b'},
+    variables: {id: 'aa1a6da9-2a05-4a86-a961-9463a292e95e'},
   });
+  console.log('🚀 ~ file: FeedScreen.tsx:35 ~ data:', data, error);
   const {setChatRoom} = useContext(ChatContext);
   const ChatData = {
     latestMessage: {
@@ -65,18 +69,15 @@ const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
         />
         <View style={globalStyles.scrollViewContentStyle}>
           <View style={globalStyles.contentContainerStyle}>
-            <View
-              style={styles.feedHeader}
-            >
+            <View style={styles.feedHeader}>
               <TouchableOpacity
                 activeOpacity={0.7}
                 onPress={() => setType('chat')}
                 style={{
                   ...styles.chatTab,
                   backgroundColor:
-                    type === 'chat' ? COLORS.primary : COLORS.lightPrimary,                  
-                }}
-              >
+                    type === 'chat' ? COLORS.primary : COLORS.lightPrimary,
+                }}>
                 <Text style={{...FONTS.h3, color: COLORS.white}}>Chats</Text>
               </TouchableOpacity>
               <TouchableOpacity
@@ -86,9 +87,7 @@ const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
                   ...styles.feedPeopleTab,
                   backgroundColor:
                     type === 'people' ? COLORS.primary : COLORS.lightPrimary,
-                  
-                }}
-              >
+                }}>
                 <Text style={{...FONTS.h3, color: COLORS.white}}>Peoples</Text>
               </TouchableOpacity>
             </View>
@@ -98,17 +97,7 @@ const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
                   columnWrapperStyle={styles.column}
                   numColumns={2}
                   key={2}
-                  data={
-                    data?.users
-                      ? [
-                          ...data.users,
-                          ...data.users,
-                          ...data.users,
-                          ...data.users,
-                          ...data.users,
-                        ]
-                      : []
-                  }
+                  data={data?.users || []}
                   renderItem={({item}) => (
                     <FeedPeoples
                       item={item}
@@ -124,11 +113,7 @@ const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
                 />
               ) : (
                 <FlatList
-                  data={
-                    data?.users
-                      ? [...data.users, ...data.users, ...data.users]
-                      : []
-                  }
+                  data={data?.users || []}
                   renderItem={({item}) => {
                     console.log(item.username, 'username');
                     return (
@@ -171,7 +156,7 @@ const styles = StyleSheet.create({
     ...FONTS.h3,
     alignSelf: 'center',
   },
-  feedHeader:{
+  feedHeader: {
     width: '100%',
     height: 50,
     marginBottom: 10,
@@ -179,21 +164,21 @@ const styles = StyleSheet.create({
     justifyContent: 'space-evenly',
     alignItems: 'center',
   },
-  feedPeopleTab:{
+  feedPeopleTab: {
     flex: 1,
     height: '100%',
     borderTopRightRadius: scale(SIZES.radius * 2),
     justifyContent: 'center',
     alignItems: 'center',
   },
-  chatTab:{
+  chatTab: {
     flex: 1,
     height: '100%',
     borderTopLeftRadius: scale(SIZES.radius * 2),
     justifyContent: 'center',
     alignItems: 'center',
   },
-  column:{
-    justifyContent:'space-between'
-  }
+  column: {
+    justifyContent: 'space-between',
+  },
 });

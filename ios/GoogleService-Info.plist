@@ -3,21 +3,21 @@
 <plist version="1.0">
 <dict>
 	<key>CLIENT_ID</key>
-	<string>170858296762-qhs2neg3vgms50f7jpnh507oiltafn4j.apps.googleusercontent.com</string>
+	<string>15531941648-iuo36c9on7ole9kgedo1ks8o8h8sslsi.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.170858296762-qhs2neg3vgms50f7jpnh507oiltafn4j</string>
+	<string>com.googleusercontent.apps.15531941648-iuo36c9on7ole9kgedo1ks8o8h8sslsi</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBMQVWiSW6dLNisRBrcKwPNs1UWDPuBqf8</string>
+	<string>AIzaSyBdBce2VFTLupQGzbfqqwfXVqe0T4NhJg4</string>
 	<key>GCM_SENDER_ID</key>
-	<string>170858296762</string>
+	<string>15531941648</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
-	<string>org.reactjs.native.example.app</string>
+	<string>com.ahenemaunited</string>
 	<key>PROJECT_ID</key>
-	<string>ahenema-united-ceb32</string>
+	<string>ahenema-dev</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ahenema-united-ceb32.appspot.com</string>
+	<string>ahenema-dev.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<false></false>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -29,6 +29,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true></true>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:170858296762:ios:ebfdcd70c423399e20d983</string>
+	<string>1:15531941648:ios:6df60298fe947001998f95</string>
+	<key>DATABASE_URL</key>
+	<string>https://ahenema-dev-default-rtdb.firebaseio.com</string>
 </dict>
 </plist>

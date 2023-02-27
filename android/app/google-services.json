@@ -1,33 +1,34 @@
 {
   "project_info": {
-    "project_number": "170858296762",
-    "project_id": "ahenema-united-ceb32",
-    "storage_bucket": "ahenema-united-ceb32.appspot.com"
+    "project_number": "15531941648",
+    "firebase_url": "https://ahenema-dev-default-rtdb.firebaseio.com",
+    "project_id": "ahenema-dev",
+    "storage_bucket": "ahenema-dev.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:170858296762:android:37a432367fba06be20d983",
+        "mobilesdk_app_id": "1:15531941648:android:eac37aafeb220496998f95",
         "android_client_info": {
           "package_name": "com.ahenemaunited"
         }
       },
       "oauth_client": [
         {
-          "client_id": "170858296762-8vq6r1j19dq60fb4s5kie9nq5pg0qncb.apps.googleusercontent.com",
+          "client_id": "15531941648-4hfeb3uibv5od73khh7p8k1ehcml3jis.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDvOH2KwrIKoy2xt8k0ZkUXAi9fPFaHHaA"
+          "current_key": "AIzaSyCzfB78b0tRtg8GjKO2RMn-i6cx3SzsIwg"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "170858296762-8vq6r1j19dq60fb4s5kie9nq5pg0qncb.apps.googleusercontent.com",
+              "client_id": "15531941648-4hfeb3uibv5od73khh7p8k1ehcml3jis.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
