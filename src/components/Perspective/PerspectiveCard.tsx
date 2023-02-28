@@ -31,8 +31,9 @@ const PerspectiveCard = ({item}: any) => {
         <View style={styles.profileView}>
           <View style={styles.hollaDetailView}>
             <Text
-              style={styles.usernameText}
-            >{`${perspectiveUser.firstname} ${perspectiveUser.lastname}`}</Text>
+              style={
+                styles.usernameText
+              }>{`${perspectiveUser.firstname} ${perspectiveUser.lastname}`}</Text>
 
             <View style={styles.hollaTypeView}>
               <Text style={styles.hollaTypeText}>
@@ -96,7 +97,7 @@ const PerspectiveCard = ({item}: any) => {
             <Image style={styles.contentImage} source={{uri: image}} />
           </TouchableOpacity>
         ) : null}
-        {/* <View>
+       <View>
           <HollaStats
             profileId={currentUser}
             currentUser={username}

@@ -1,4 +1,4 @@
-import React, {FC, useState, useEffect} from 'react';
+import React, {FC, useState, useEffect, useContext} from 'react';
 import {
   FlatList,
   Image,
@@ -17,7 +17,7 @@ import {
   PerspectiveCard,
 } from '../../components';
 import {scale, verticalScale} from 'react-native-size-matters';
-import {COLORS, FONTS, globalStyles, SIZES} from '../../constants';
+import {COLORS, FONTS, globalStyles, routes, SIZES} from '../../constants';
 import {GET_PERSPECTIVES_BY_ID, GET_USER_BY_ID} from '../../graphql/queries';
 import {
   FOLLOW_USER_MUTATION,
@@ -25,6 +25,7 @@ import {
 } from '../../graphql/mutations';
 import {useQuery, useMutation} from '@apollo/client';
 import avatar from '../../assets/images/avatar.png';
+import {Context as ChatContext} from '../../context/chatContext';
 type RootStackParamList = {
   UserProfileScreen: undefined;
 };
@@ -33,7 +34,7 @@ type UserProfileScreenProps = NativeStackScreenProps<
   RootStackParamList,
   'UserProfileScreen'
 >;
-const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
+const UserProfileScreen: FC<UserProfileScreenProps> = ({route, navigation}) => {
   const detail: any = route?.params ? route.params : {};
   const userId = '9e832a38-2dca-47b0-8afa-6a18a57cd87b';
   const [follow, setFollow] = useState(detail.isFollowing ? true : false);
@@ -46,6 +47,7 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
   const {data: userData} = useQuery(GET_USER_BY_ID, {
     variables: {id: detail.id},
   });
+  const {setChatRoom} = useContext(ChatContext);
 
   useEffect(() => {
     console.warn({data});
@@ -74,15 +76,27 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
     }
   };
 
+  const ChatClick = () => {
+    const ChatData = {
+      latestMessage: {
+        createdAt: 1611750005404,
+        text: 'Now',
+      },
+      name: 'another one',
+    };
+
+    setChatRoom({...ChatData, _id: detail.id});
+    navigation.navigate('GlobalModal', {
+      screen: routes.CHAT_SCREEN,
+      params: {thread: userData?.users[0]},
+    });
+  };
+
   const [show, setShow] = useState(0);
   return (
     <View style={styles.container}>
       <HeaderBar
-        title={
-          !loading
-            ? `${userData?.users[0].firstname} ${userData?.users[0].lastname}`
-            : null
-        }
+        title={!loading ? `${userData?.users[0].username}` : null}
         height={verticalScale(Platform.OS === 'ios' ? 100 : 80)}
         showBackIcon
       />
@@ -102,14 +116,17 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
                 {`${userData?.users[0].firstname} ${userData?.users[0].lastname}`}
               </Text>
               <View style={styles.profileData}>
-                <View style={{...styles.box}}>
+                <TouchableOpacity
+                  activeOpacity={0.7}
+                  onPress={() => ChatClick()}
+                  style={{...styles.box}}>
                   <Text style={styles.text}>Chat</Text>
                   <IconAntDesign
                     name={'message1'}
                     size={20}
                     color={COLORS.black}
                   />
-                </View>
+                </TouchableOpacity>
                 <View style={styles.separator} />
                 <TouchableOpacity onPress={following}>
                   <View

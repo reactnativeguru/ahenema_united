@@ -5,8 +5,7 @@ import {SIZES} from '../../constants';
 import {scale} from 'react-native-size-matters';
 import avatar from '../../assets/images/avatar.png';
 
-const RetailerPostMapScreen = ({locations,onPress}) => {
- 
+const RetailerPostMapScreen = ({locations, onPress}) => {
   return (
     <View style={styles.container}>
       <MapView
@@ -24,18 +23,16 @@ const RetailerPostMapScreen = ({locations,onPress}) => {
           latitudeDelta: 0.015,
           longitudeDelta: 0.0121,
         }}
-        showsUserLocation={true}
-      >
+        showsUserLocation={true}>
         {locations.map(item => (
           <Marker
             onPress={() => onPress(item)}
             coordinate={{
               latitude: item.latitude,
               longitude: item.longitude,
-            }}
-          >
-             <Image source={{uri:item.image}} style={styles.locationImage} />
-             </Marker>
+            }}>
+            <Image source={{uri: item.image}} style={styles.locationImage} />
+          </Marker>
         ))}
       </MapView>
     </View>
@@ -53,11 +50,11 @@ const styles = StyleSheet.create({
     ...StyleSheet.absoluteFillObject,
     borderRadius: scale(SIZES.radius * 2),
   },
-  locationImage:{
+  locationImage: {
     height: 35,
-    borderWidth:2,
-    borderColor:'black',
-    borderRadius:20, 
-    width:35 
-  }
+    borderWidth: 2,
+    borderColor: 'black',
+    borderRadius: 20,
+    width: 35,
+  },
 });

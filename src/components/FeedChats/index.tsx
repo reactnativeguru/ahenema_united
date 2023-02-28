@@ -39,7 +39,7 @@ const FeedChats: FC<RootStackParamList> = ({item, handlePress}) => {
             </View>
           </View>
           <Text numberOfLines={1} style={styles.lastMsgText}>
-            {'item.latestMessage.texts'}
+            {item?.latestMessage?.texts || '-'}
           </Text>
         </View>
       </View>

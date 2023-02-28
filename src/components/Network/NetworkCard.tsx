@@ -4,7 +4,8 @@ import {scale} from 'react-native-size-matters';
 import {IconAntDesign, IconMaterialIcon} from '..';
 import {COLORS, FONTS, SIZES} from '../../constants';
 import avatar from '../../assets/images/avatar.png';
-const NetworkCard = ({id, item, onPress, followData}: any) => {
+
+const NetworkCard = ({id, item, onPress, followData, handleChatPress}: any) => {
   const {username, profile} = item;
   const user_id = '9e832a38-2dca-47b0-8afa-6a18a57cd87b';
   const [follow, setFollow] = useState(false);
@@ -37,7 +38,7 @@ const NetworkCard = ({id, item, onPress, followData}: any) => {
         </View>
       </TouchableOpacity>
       <View style={styles.iconsStyles}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => handleChatPress()}>
           <IconAntDesign name={'message1'} size={20} color={COLORS.gray} />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setFollow(!follow)}>

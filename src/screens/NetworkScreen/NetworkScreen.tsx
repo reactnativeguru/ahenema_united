@@ -1,4 +1,4 @@
-import React, {FC, useEffect} from 'react';
+import React, {FC, useContext, useEffect} from 'react';
 import {View, StyleSheet, Text, Platform, FlatList} from 'react-native';
 import {COLORS, FONTS, globalStyles, routes, SIZES} from '../../constants';
 import {HeaderBar, LoadingIndicator, NetworkCard} from '../../components';
@@ -6,6 +6,7 @@ import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {verticalScale} from 'react-native-size-matters';
 import {useSubscription} from '@apollo/client';
 import {GET_USERS_PROFILE, GET_FOLLOW} from '../../graphql/subscriptions';
+import {Context as ChatContext} from '../../context/chatContext';
 
 type RootStackParamList = {
   NetworkScreen: undefined;
@@ -24,6 +25,7 @@ const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
   const {data: followData} = useSubscription(GET_FOLLOW, {
     variables: {id: user_id},
   });
+  const {setChatRoom} = useContext(ChatContext);
 
   useEffect(() => {
     console.warn({followData});
@@ -40,6 +42,22 @@ const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
     navigation.navigate(routes.USER_PROFILE_SCREEN, {
       id,
       isFollowing,
+    });
+  };
+
+  const ChatClick = item => {
+    const ChatData = {
+      latestMessage: {
+        createdAt: 1611750005404,
+        text: 'Now',
+      },
+      name: 'another one',
+    };
+
+    setChatRoom({...ChatData, _id: item.id});
+    navigation.navigate('GlobalModal', {
+      screen: routes.CHAT_SCREEN,
+      params: {thread: item},
     });
   };
   return (
@@ -66,6 +84,7 @@ const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
                     followData={followData?.follow ? followData.follow : []}
                     onPress={() => userDetail(item._id)}
                     navigation={navigation}
+                    handleChatPress={() => ChatClick(item)}
                   />
                 );
               }}
