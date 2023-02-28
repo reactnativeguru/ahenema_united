@@ -20,19 +20,18 @@ export default function TabNavigation() {
             iconName = 'home';
           } else if (route.name === 'Network') {
             iconName = 'addusergroup';
-          } else if (route.name === 'Retailer') {
+          } else if (route.name === 'Business') {
             iconName = 'tags';
           }
           return <IconAntDesign name={iconName} size={size} color={color} />;
         },
         tabBarActiveTintColor: COLORS.primary,
         tabBarInactiveTintColor: COLORS.lightGray4,
-      })}
-    >
-      <Tab.Screen name="Perspective" component={PerspectiveStack} />
+      })}>
       <Tab.Screen name="Home" component={HomeStack} />
+      <Tab.Screen name="Perspective" component={PerspectiveStack} />
       <Tab.Screen name="Network" component={NetworkStack} />
-      <Tab.Screen name="Retailer" component={RetailerStack} />
+      <Tab.Screen name="Business" component={RetailerStack} />
     </Tab.Navigator>
   );
 }

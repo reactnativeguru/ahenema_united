@@ -11,8 +11,7 @@ const RetailerListingCard = ({item, onPress}: any) => {
     <TouchableOpacity
       style={styles.container}
       activeOpacity={1}
-      onPress={onPress}
-    >
+      onPress={onPress}>
       <Image style={styles.contentImage} source={{uri: image}} />
       <View style={styles.categoryTextContainer}>
         <Text style={styles.categoryText}>{retailersCategory.name}</Text>
@@ -20,21 +19,17 @@ const RetailerListingCard = ({item, onPress}: any) => {
       <View style={styles.textContainer}>
         <View style={[styles.rowContainer, styles.enviroment]}>
           <View style={styles.rowContainer}>
-          <IconAntDesign name={'tags'} size={20} color={COLORS.gray} />
-          <Text style={styles.title}>{title}</Text>
-        </View>
-        <View>
+            <IconAntDesign name={'tags'} size={20} color={COLORS.gray} />
+            <Text style={styles.title}>{title}</Text>
+          </View>
+          <View>
             <Text style={styles.text}>{retailersCurrency.name}</Text>
           </View>
         </View>
         <View style={styles.rowContainer}>
-            <IconAntDesign
-              name={'enviroment'}
-              size={20}
-              color={COLORS.gray}
-            />
-            <Text style={styles.title}>{retailersCity.name}</Text>
-          </View>
+          <IconAntDesign name={'enviroment'} size={20} color={COLORS.gray} />
+          <Text style={styles.title}>{retailersCity.name}</Text>
+        </View>
       </View>
     </TouchableOpacity>
   );
@@ -50,9 +45,9 @@ const styles = StyleSheet.create({
   contentImage: {
     width: undefined,
     height: scale(200),
-    borderTopLeftRadius: SIZES.radius ,
-    borderTopRightRadius: SIZES.radius ,
-    overflow:'hidden',
+    borderTopLeftRadius: SIZES.radius,
+    borderTopRightRadius: SIZES.radius,
+    overflow: 'hidden',
   },
   categoryTextContainer: {
     backgroundColor: COLORS.transparentBlack2,
@@ -63,8 +58,8 @@ const styles = StyleSheet.create({
     paddingVertical: scale(5),
     paddingHorizontal: scale(8),
     position: 'absolute',
-    justifyContent:'center',
-    alignItems:'center',
+    justifyContent: 'center',
+    alignItems: 'center',
     top: 0,
     // right: 0,
   },
@@ -85,10 +80,11 @@ const styles = StyleSheet.create({
     ...FONTS.body5,
     // fontWeight: 'bold',
     marginHorizontal: scale(5),
+    color: COLORS.gray,
   },
   text: {
     ...FONTS.body5,
     marginHorizontal: scale(5),
-    color:COLORS.gray
+    color: COLORS.gray,
   },
 });

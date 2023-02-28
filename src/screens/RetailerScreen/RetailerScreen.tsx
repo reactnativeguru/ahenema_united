@@ -26,7 +26,7 @@ const RetailerScreen: FC<RetailerScreenProps> = ({navigation}) => {
   return (
     <View style={styles.container}>
       <HeaderBar
-        title={'Retailer'}
+        title={'Business'}
         height={verticalScale(Platform.OS === 'ios' ? 100 : 80)}
         showDrawer
       />

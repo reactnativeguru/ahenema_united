@@ -187,14 +187,13 @@ const RetailerPostScreen: FC<RetailerPostScreenProps> = ({
   return (
     <View style={styles.container}>
       <HeaderBar
-        title={'Create a Retailer'}
+        title={'Create a Business'}
         height={verticalScale(100)}
         showBackIcon
       />
       <ScrollView
         style={globalStyles.scrollViewContentStyle}
-        contentContainerStyle={styles.scrollViewContent}
-      >
+        contentContainerStyle={styles.scrollViewContent}>
         <View style={globalStyles.contentContainerStyle}>
           <View style={globalStyles.spacing}>
             <Text style={globalStyles.label}>Listing Title</Text>
@@ -222,8 +221,7 @@ const RetailerPostScreen: FC<RetailerPostScreenProps> = ({
                 onSelect={index => {
                   setCity(retailerCities.retailersCity[index - 1].name);
                   setCityId(retailerCities.retailersCity[index - 1].id);
-                }}
-              >
+                }}>
                 {retailerCities.retailersCity.map((item, index: number) => {
                   return <SelectItem key={index} title={item.name} />;
                 })}
@@ -278,8 +276,7 @@ const RetailerPostScreen: FC<RetailerPostScreenProps> = ({
                   setCategoryId(
                     retailerCategories.retailersCategory[index - 1].id,
                   );
-                }}
-              >
+                }}>
                 {retailerCategories.retailersCategory.map(
                   (item, index: number) => {
                     return <SelectItem key={index} title={item.name} />;
@@ -303,8 +300,7 @@ const RetailerPostScreen: FC<RetailerPostScreenProps> = ({
                   setCurrencyId(
                     retailerCurrencies.retailersCurrency[index - 1].id,
                   );
-                }}
-              >
+                }}>
                 {retailerCurrencies.retailersCurrency.map(
                   (item, index: number) => {
                     return <SelectItem key={index} title={item.name} />;
