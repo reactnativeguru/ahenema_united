@@ -22,7 +22,7 @@ import {
 import {AuthContextType, DrawerButtonProps} from '../../utils/interfaces';
 // import {useSubscription} from '@apollo/client';
 // import {CHECK_PROFILE_QUERY} from '../../graphql/subscriptions';
-
+import avatar from '../../assets/images/avatar.png';
 const CustomDrawerContent = (props: any) => {
   const {state, userSignOut} = useContext(AuthContext) as AuthContextType;
   const {state: communityState} = useContext(CommunityContext);
@@ -66,8 +66,7 @@ const CustomDrawerContent = (props: any) => {
         <TouchableOpacity
           onPress={() => routeTo(value)}
           style={styles.displayRow}
-          activeOpacity={0.7}
-        >
+          activeOpacity={0.7}>
           <SLIcon
             name={icon}
             size={20}
@@ -77,8 +76,7 @@ const CustomDrawerContent = (props: any) => {
             style={[
               globalStyles.drawerLink,
               root === value ? {color: COLORS.lightGreen} : {},
-            ]}
-          >
+            ]}>
             {title}
           </Text>
         </TouchableOpacity>
@@ -93,8 +91,7 @@ const CustomDrawerContent = (props: any) => {
           value === 'ProfileScreen' ? routeTo(value) : modalGlobal(value)
         }
         style={styles.displayRow}
-        activeOpacity={0.7}
-      >
+        activeOpacity={0.7}>
         <SLIcon
           name={icon}
           size={20}
@@ -104,8 +101,7 @@ const CustomDrawerContent = (props: any) => {
           style={[
             globalStyles.drawerLink,
             root === value ? {color: COLORS.lightGreen} : {},
-          ]}
-        >
+          ]}>
           {title}
         </Text>
       </TouchableOpacity>
@@ -116,8 +112,7 @@ const CustomDrawerContent = (props: any) => {
     <ScrollView
       {...props}
       scrollEnabled={false}
-      contentContainerStyle={styles.contentContainerStyle}
-    >
+      contentContainerStyle={styles.contentContainerStyle}>
       <View style={styles.container}>
         <View style={styles.imageview}>
           <Image
@@ -128,17 +123,12 @@ const CustomDrawerContent = (props: any) => {
                 : images.appLogo
             }
           />
-          <Image
-            style={styles.img}
-            source={{
-              uri: 'https://ahenemaunited.sarchitek.com/wp-content/uploads/2016/10/Emmanuel-1000x776-1.jpeg',
-            }}
-          />
+          <Image style={styles.img} source={avatar} />
         </View>
 
         <View>
           <Text numberOfLines={2} style={styles.name}>
-            Hi, {state?.user?.username ? state.user.username : 'John'}
+            Hi
           </Text>
         </View>
 
@@ -154,11 +144,7 @@ const CustomDrawerContent = (props: any) => {
             icon={'account-arrow-right'}
           />
 
-          <DrawerButton
-            title={'Feed'}
-            value={'FeedScreen'}
-            icon={'rss'}
-          />
+          <DrawerButton title={'Feed'} value={'FeedScreen'} icon={'rss'} />
 
           <DrawerCustomButton
             title={'FAQs'}
@@ -177,8 +163,7 @@ const CustomDrawerContent = (props: any) => {
             <TouchableOpacity
               onPress={() => logOut()}
               style={styles.displayRow}
-              activeOpacity={0.7}
-            >
+              activeOpacity={0.7}>
               <SLIcon name={'logout'} size={20} color={COLORS.lightGray4} />
               <Text style={globalStyles.drawerLink}>Log Out</Text>
             </TouchableOpacity>

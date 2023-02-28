@@ -88,7 +88,7 @@ const FeedScreen: FC<FeedScreenProps> = ({navigation}) => {
                   backgroundColor:
                     type === 'people' ? COLORS.primary : COLORS.lightPrimary,
                 }}>
-                <Text style={{...FONTS.h3, color: COLORS.white}}>Peoples</Text>
+                <Text style={{...FONTS.h3, color: COLORS.white}}>People</Text>
               </TouchableOpacity>
             </View>
             {!loading ? (
