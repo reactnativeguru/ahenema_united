@@ -361,13 +361,14 @@ const RetailerPostScreen: FC<RetailerPostScreenProps> = ({
             ) : null}
           </View>
           <View style={[globalStyles.spacing, styles.ImageContainer]}>
-            <PhotoPicker icon={'camera'} onPress={() => takeImageHandler()} />
             {selectedImage ? (
               <Avatar
                 url={selectedImage}
                 style={{...globalStyles.hollaFormImageView}}
               />
-            ) : null}
+            ) : (
+              <PhotoPicker icon={'camera'} onPress={() => takeImageHandler()} />
+            )}
           </View>
         </View>
       </ScrollView>
