@@ -86,8 +86,7 @@ const HomeScreen: FC<HomeScreenProps> = ({navigation}) => {
             screen: routes.HOME_DETAIL_SCREEN,
             params: item,
           })
-        }
-      >
+        }>
         <Text style={styles.postTitle}>{item.title.rendered}</Text>
         <Image
           style={styles.contentImage}
@@ -120,8 +119,7 @@ const HomeScreen: FC<HomeScreenProps> = ({navigation}) => {
           style={[
             globalStyles.contentContainerStyle,
             styles.contentContainerStyle,
-          ]}
-        >
+          ]}>
           {loader ? (
             <View style={styles.loader}>
               <LoadingIndicator color={COLORS.primary} size={35} />
@@ -180,6 +178,7 @@ const styles = StyleSheet.create({
   postTitle: {
     ...FONTS.body5,
     marginBottom: SIZES.paddingLeft / 2,
+    color: COLORS.gray,
   },
   contentImage: {
     width: undefined,

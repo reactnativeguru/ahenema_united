@@ -32,10 +32,26 @@ const HomeDetailScreen: FC<HomeDetailScreenProps> = ({navigation, route}) => {
       </View>
       <ScrollView style={{padding: SIZES.paddingLeft}}>
         <View style={styles.htmlContainer}>
-          <Text style={FONTS.h3}>{route?.params?.title?.rendered}</Text>
+          <Text style={{...FONTS.h3, color: COLORS.gray}}>
+            {route?.params?.title?.rendered || ''}
+          </Text>
           <HTML
             source={{html: route?.params?.content?.rendered}}
             contentWidth={WIDTH - 40}
+            tagsStyles={{
+              span: {
+                color: COLORS.gray,
+              },
+              p: {
+                color: COLORS.gray,
+              },
+              h1: {
+                color: COLORS.gray,
+              },
+              h2: {
+                color: COLORS.gray,
+              },
+            }}
           />
         </View>
       </ScrollView>

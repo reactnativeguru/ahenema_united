@@ -18,7 +18,7 @@ import {
 } from '../../components';
 import {scale, verticalScale} from 'react-native-size-matters';
 import {COLORS, FONTS, globalStyles, SIZES} from '../../constants';
-import {GET_PERSPECTIVES_BY_ID} from '../../graphql/queries';
+import {GET_PERSPECTIVES_BY_ID, GET_USER_BY_ID} from '../../graphql/queries';
 import {
   FOLLOW_USER_MUTATION,
   UNFOLLOW_USER_MUTATION,
@@ -40,6 +40,10 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
   const [InsertFollow] = useMutation(FOLLOW_USER_MUTATION);
   const [DeleteFollow] = useMutation(UNFOLLOW_USER_MUTATION);
   const {data, loading} = useQuery(GET_PERSPECTIVES_BY_ID, {
+    variables: {id: detail.id},
+  });
+
+  const {data: userData} = useQuery(GET_USER_BY_ID, {
     variables: {id: detail.id},
   });
 
@@ -76,7 +80,7 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
       <HeaderBar
         title={
           !loading
-            ? `${data.perspectives[0].perspectiveUser.firstname} ${data.perspectives[0].perspectiveUser.lastname}`
+            ? `${userData?.users[0].firstname} ${userData?.users[0].lastname}`
             : null
         }
         height={verticalScale(Platform.OS === 'ios' ? 100 : 80)}
@@ -88,14 +92,14 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
             <View style={styles.topHeader}>
               <Image
                 source={
-                  data.perspectives[0].image
-                    ? {uri: data.perspectives[0].image}
+                  userData?.users[0].image
+                    ? {uri: userData?.users[0].image}
                     : avatar
                 }
                 style={styles.profileImageView}
               />
               <Text style={styles.name}>
-                {`${data.perspectives[0].perspectiveUser.firstname} ${data.perspectives[0].perspectiveUser.lastname}`}
+                {`${userData?.users[0].firstname} ${userData?.users[0].lastname}`}
               </Text>
               <View style={styles.profileData}>
                 <View style={{...styles.box}}>
@@ -117,8 +121,7 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
                             backgroundColor: COLORS.white,
                             borderColor: COLORS.grayPrimaryBorder,
                           }
-                    }
-                  >
+                    }>
                     <Text style={styles.text}>
                       {follow ? 'Followed' : 'follow'}
                     </Text>
@@ -142,8 +145,7 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
                       <Text
                         style={
                           show === index ? styles.selected : styles.unSelected
-                        }
-                      >
+                        }>
                         {item}
                       </Text>
                     </TouchableOpacity>
@@ -154,11 +156,17 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
             {show === 0 ? (
               <View style={{...styles.details, ...styles.name}}>
                 <Text style={styles.title}>Name</Text>
-                <Text style={styles.text2}>
-                  {data.perspectives[0].perspectiveUser.firstname}
-                </Text>
+                <Text
+                  style={
+                    styles.text2
+                  }>{`${userData?.users[0].firstname} ${userData?.users[0].lastname}`}</Text>
+                <Text style={styles.title}>Email</Text>
+                <Text style={styles.text2}>{userData?.users[0].lastname}</Text>
+                <Text style={styles.title}>phone</Text>
+                <Text style={styles.text2}>{userData?.users[0].phone}</Text>
+                {/*
                 <Text style={styles.title}>Category</Text>
-                <Text style={styles.text2}>
+                 <Text style={styles.text2}>
                   {data.perspectives[0].perspectivesCategory.name}
                 </Text>
                 <Text style={styles.title}>Description</Text>
@@ -168,7 +176,7 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
                 <Text style={styles.title}>Created At</Text>
                 <Text style={styles.text2}>
                   {data.perspectives[0].created_at}
-                </Text>
+                </Text> */}
               </View>
             ) : (
               <View style={styles.name}>
@@ -178,6 +186,9 @@ const UserProfileScreen: FC<UserProfileScreenProps> = ({route}) => {
                   showsVerticalScrollIndicator={false}
                   contentContainerStyle={styles.details}
                   renderItem={({item}) => <PerspectiveCard item={item} />}
+                  ListEmptyComponent={() => (
+                    <Text style={styles.notFound}>{`Not found`}</Text>
+                  )}
                 />
               </View>
             )}
@@ -263,18 +274,27 @@ const styles = StyleSheet.create({
   text: {
     ...FONTS.h5,
     marginRight: scale(3),
+    color: COLORS.gray,
   },
   name: {
     ...FONTS.h4,
     marginVertical: 8,
     fontWeight: 'bold',
+    color: COLORS.black,
   },
   selected: {
     ...FONTS.h4,
     borderBottomWidth: 1,
+    borderColor: COLORS.black,
+    color: COLORS.black,
   },
   unSelected: {
     ...FONTS.h4,
     color: COLORS.lightGray2,
+  },
+  notFound: {
+    ...FONTS.h4,
+    color: COLORS.lightGray2,
+    textAlign: 'center',
   },
 });

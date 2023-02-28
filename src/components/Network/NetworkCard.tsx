@@ -8,10 +8,9 @@ const NetworkCard = ({id, item, onPress, followData}: any) => {
   const {username, profile} = item;
   const user_id = '9e832a38-2dca-47b0-8afa-6a18a57cd87b';
   const [follow, setFollow] = useState(false);
-  console.log(profile,"profile")
   useEffect(() => {
     console.warn({followData});
-    console.log(item,"item")
+    console.log(item, 'item');
     getFolloww();
   }, [followData]);
 
@@ -28,7 +27,11 @@ const NetworkCard = ({id, item, onPress, followData}: any) => {
         <View style={styles.contentContainer}>
           <Image
             style={styles.profileImageView}
-            source={!profile || profile.image_uri ===null ? avatar  : {uri: profile.image_uri}}
+            source={
+              !profile || profile.image_uri === null
+                ? avatar
+                : {uri: profile.image_uri}
+            }
           />
           <Text style={styles.text}>{username}</Text>
         </View>
@@ -79,6 +82,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     ...FONTS.body5,
     marginTop: 5,
+    color: COLORS.gray,
   },
   iconsStyles: {
     alignSelf: 'flex-end',

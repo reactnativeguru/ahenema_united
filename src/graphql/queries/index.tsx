@@ -350,3 +350,17 @@ export const GET_RETAILERS_CATEGORY = gql`
     }
   }
 `;
+
+export const GET_USER_BY_ID = gql`
+  query MyQuery($id: uuid) {
+    users(where: {_id: {_eq: $id}}) {
+      _id
+      email
+      firstname
+      lastname
+      phone
+      profile_id
+      username
+    }
+  }
+`;

@@ -1,18 +1,21 @@
 import firestore from '@react-native-firebase/firestore';
-import React, { useContext, useEffect, useRef, useState } from 'react';
-import { Alert, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import React, {useContext, useEffect, useRef, useState} from 'react';
+import {Alert, SafeAreaView, StyleSheet, Text, View} from 'react-native';
 import {
-  Bubble, GiftedChat, InputToolbar, Send,
-  SystemMessage
+  Bubble,
+  GiftedChat,
+  InputToolbar,
+  Send,
+  SystemMessage,
 } from 'react-native-gifted-chat';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import IIcon from 'react-native-vector-icons/Ionicons';
-import { ProfileImage } from '../../components';
+import {ProfileImage} from '../../components';
 import BackgroundLayout from '../../components/Layout/BackgroundLayout';
 import LoadingIndicator from '../../components/Loaders/LoadingIndicator';
-import { COLORS, FONTS } from '../../constants';
-import { Context as AuthContext } from '../../context/authContext';
-import { Context as ChatContext } from '../../context/chatContext';
+import {COLORS, FONTS} from '../../constants';
+import {Context as AuthContext} from '../../context/authContext';
+import {Context as ChatContext} from '../../context/chatContext';
 
 // https://amanhimself.dev/blog/chat-app-with-react-native-part-4/
 const RoomScreen = () => {
@@ -201,8 +204,7 @@ const RoomScreen = () => {
     <SafeAreaView style={styles.main}>
       <BackgroundLayout
         bgImage={{uri: 'https://wallpapercave.com/wp/wp4410714.jpg'}}
-        ChatScreen={true}
-      >
+        ChatScreen={true}>
         <View style={styles.roomDescription}>
           <Text style={{color: COLORS.primary, ...FONTS.h4}}>
             {chatState && chatState.chatRoom && chatState.chatRoom.description
@@ -324,5 +326,6 @@ const styles = StyleSheet.create({
   textInput: {
     ...FONTS.h5,
     paddingHorizontal: 6,
+    color: COLORS.black,
   },
 });

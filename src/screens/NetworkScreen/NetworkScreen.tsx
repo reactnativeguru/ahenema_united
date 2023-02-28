@@ -27,7 +27,6 @@ const NetworkScreen: FC<NetworkScreenProps> = ({navigation}) => {
 
   useEffect(() => {
     console.warn({followData});
-    console.warn({data});
   }, [followData, data]);
 
   const userDetail = (id: string) => {
