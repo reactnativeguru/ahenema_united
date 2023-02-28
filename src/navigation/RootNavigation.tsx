@@ -16,8 +16,7 @@ const SplashAuth = () => {
     <Stack.Navigator
       screenOptions={{
         headerShown: false,
-      }}
-    >
+      }}>
       <Stack.Screen
         name={routes.INTRO_SCREEN}
         component={LoadingIndicatorView}
@@ -91,7 +90,7 @@ const RootNavStack = () => {
     if (state.skip) {
       setStackName('skip');
     } else if (!state.userLogin) {
-      setStackName('auth');
+      setStackName('skip');
     } else if (
       state.userLogin &&
       data &&

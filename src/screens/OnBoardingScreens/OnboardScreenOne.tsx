@@ -287,8 +287,7 @@ const OnboardScreenOne: FC<OnboardScreenOneProps> = ({navigation}) => {
         }}
         onSubmit={values => {
           checkAndContinue(values);
-        }}
-      >
+        }}>
         {formikProps => <OnboardingForm formikProps={formikProps} />}
       </Formik>
     </View>

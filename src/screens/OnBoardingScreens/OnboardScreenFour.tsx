@@ -22,7 +22,8 @@ import {
 // import {COMMUNITY} from '../../graphql/queries';
 // import {INSERT_COMMUNITY_MUTATION} from '../../graphql/mutations';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
-
+import {Context as AuthContext} from '../../context/authContext';
+import {useContext} from 'react';
 type RootStackParamList = {
   OnboardScreenFour: undefined;
 };

@@ -31,7 +31,6 @@ import moment from 'moment';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {NativeStackScreenProps} from '@react-navigation/native-stack';
 import {AuthContextType} from '../../utils/interfaces';
-
 type RootStackParamList = {
   OnboardScreenFive: undefined;
 };
@@ -127,8 +126,7 @@ const OnboardScreenFive: FC<OnboardScreenFiveProps> = ({navigation}) => {
   const TermsModal = () => {
     return (
       <SafeAreaView
-        style={[globalStyles.modalContainer, {padding: SIZES.paddingLeft}]}
-      >
+        style={[globalStyles.modalContainer, {padding: SIZES.paddingLeft}]}>
         <View style={styles.closeIcon}>
           <TouchableOpacity onPress={() => setTermsVisible(false)}>
             <IconAntDesign
@@ -182,8 +180,9 @@ const OnboardScreenFive: FC<OnboardScreenFiveProps> = ({navigation}) => {
               <View style={styles.userInfoView}>
                 {isProfileExist && isProfileExist.first_name ? (
                   <Text
-                    style={styles.title}
-                  >{`${isProfileExist.first_name} ${isProfileExist.last_name}`}</Text>
+                    style={
+                      styles.title
+                    }>{`${isProfileExist.first_name} ${isProfileExist.last_name}`}</Text>
                 ) : null}
                 {isProfileExist && isProfileExist.expertise ? (
                   <Text style={styles.subtitle}>
